@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="rad">#FFFF0000</color>
+    <color name="ps_color_black1">#071431</color>
+</resources>
