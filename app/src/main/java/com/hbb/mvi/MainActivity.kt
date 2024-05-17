@@ -1,36 +1,50 @@
 package com.hbb.mvi
 
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.hbb.mvi.base.BaseBindingActivity
+import com.hbb.mvi.base.BaseActivity
 import com.hbb.mvi.base.LoadInter
 import com.hbb.mvi.databinding.ActivityMainBinding
-import com.hbb.mvi.model.intent.HomeIEvent
+import com.hbb.mvi.model.bean.injectTes.Truck
 import com.hbb.mvi.model.intent.UserListState
 import com.hbb.mvi.model.mv.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainActivity : BaseBindingActivity<ActivityMainBinding>(block = { inflater ->
-    DataBindingUtil.inflate(inflater, R.layout.activity_main, null, false)
-}) {
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
+
+    @Inject
+    lateinit var truck: Truck
 
     private val TAG = "MainActivity"
 
-    private val mainViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
+//    private val mainViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
+//
+//    override fun initData(savedInstanceState: Bundle?) {
+//        observerFlowIntent()
+//    }
 
-    override fun initData(savedInstanceState: Bundle?) {
-        observerFlowIntent()
+
+    override val mViewModel by viewModels<HomeViewModel>()
+
+    override fun createVB() = ActivityMainBinding.inflate(layoutInflater)
+
+    override fun initRequestData() {}
+
+    override fun ActivityMainBinding.initView() {
+
     }
+
 
     private fun observerFlowIntent() {
         //监听业务事件
         lifecycleScope.launch {
-            mainViewModel.iStateFlow.collect { state ->
+            mViewModel.iStateFlow.collect { state ->
                 when (state.userListState) {
                     is UserListState.Instance -> {
                     }
@@ -46,7 +60,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(block = { inflater
 
         //监听加载状态
         lifecycleScope.launch {
-            mainViewModel.loadInterFlow.collect { loadInter ->
+            mViewModel.loadInterFlow.collect { loadInter ->
                 when (loadInter) {
                     is LoadInter.Error -> {
                         Log.d(TAG, "loadFlow -> load error: ${loadInter.errorMsg} ")
@@ -70,7 +84,9 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(block = { inflater
     fun getUserList(view: View) {
         Toast.makeText(this, "开始请求！", Toast.LENGTH_SHORT).show()
         //发起用户列表请求
-        mainViewModel.sendEventIntent(HomeIEvent.GetUserList)
+//        mainViewModel.sendEventIntent(HomeIEvent.GetUserList)
+        truck.deliver()
     }
+
 
 }
