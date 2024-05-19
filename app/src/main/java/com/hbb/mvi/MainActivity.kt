@@ -9,6 +9,7 @@ import com.hbb.mvi.base.BaseActivity
 import com.hbb.mvi.base.LoadInter
 import com.hbb.mvi.databinding.ActivityMainBinding
 import com.hbb.mvi.model.bean.injectTes.Truck
+import com.hbb.mvi.model.intent.HomeIEvent
 import com.hbb.mvi.model.intent.UserListState
 import com.hbb.mvi.model.mv.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
     private val TAG = "MainActivity"
 
-//    private val mainViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
+//    private val mViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
 //
 //    override fun initData(savedInstanceState: Bundle?) {
 //        observerFlowIntent()
@@ -34,10 +35,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
     override fun createVB() = ActivityMainBinding.inflate(layoutInflater)
 
-    override fun initRequestData() {}
 
     override fun ActivityMainBinding.initView() {
 
+    }
+
+    override fun initData() {
+        observerFlowIntent()
     }
 
 
@@ -51,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
                     is UserListState.Success -> {
                         val userList = state.userListState.userList
-                        Log.i(TAG, "request success: $userList")
+                        Log.i(TAG, "request success!: $userList")
                         //todo：处理用户列表信息
                     }
                 }
@@ -82,10 +86,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
     }
 
     fun getUserList(view: View) {
-        Toast.makeText(this, "开始请求！", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "开始请求!!", Toast.LENGTH_SHORT).show()
         //发起用户列表请求
-//        mainViewModel.sendEventIntent(HomeIEvent.GetUserList)
-        truck.deliver()
+        mViewModel.sendEventIntent(HomeIEvent.GetUserList)
+//        truck.deliver()
     }
 
 

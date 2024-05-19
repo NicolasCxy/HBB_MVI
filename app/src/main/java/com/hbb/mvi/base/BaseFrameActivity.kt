@@ -9,8 +9,13 @@ import androidx.viewbinding.ViewBinding
 import com.hbb.mvi.base.view.FrameView
 import com.hbb.mvi.utils.EventBusUtils
 import com.hbb.mvi.utils.RegisterEventBus
+import com.hbb.mvi.utils.network.AutoRegisterNetListener
+import com.hbb.mvi.utils.network.NetworkStateChangeListener
+import com.hbb.mvi.utils.network.NetworkTypeEnum
+import me.jessyan.autosize.AutoSizeCompat
 
-abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity(),FrameView<VB>{
+abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity(),FrameView<VB>,
+    NetworkStateChangeListener {
 
     protected abstract val mViewModel:VM
 
@@ -34,7 +39,7 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
         setStatusBar()
         mBinding.initView()
         initNetworkListener()
-        initRequestData()
+        initData()
     }
 
     /**
@@ -42,9 +47,23 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
      * @return Unit
      */
     private fun initNetworkListener() {
-//        lifecycle.addObserver(AutoRegisterNetListener(this))  //TODO:后续添加
+        lifecycle.addObserver(AutoRegisterNetListener(this))
     }
+    /**
+     * 网络类型更改回调
+     * @param type Int 网络类型
+     * @return Unit
+     */
+    override fun networkTypeChange(type: NetworkTypeEnum) {}
 
+    /**
+     * 网络连接状态更改回调
+     * @param isConnected Boolean 是否已连接
+     * @return Unit
+     */
+    override fun networkConnectChange(isConnected: Boolean) {
+
+    }
 
     /**
      * 设置状态栏
@@ -62,14 +81,16 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
         super.onDestroy()
     }
 
-//    override fun getResources(): Resources {
-//        // 主要是为了解决 AndroidAutoSize 在横屏切换时导致适配失效的问题
-//        // 但是 AutoSizeCompat.autoConvertDensity() 对线程做了判断 导致Coil等图片加载框架在子线程访问的时候会异常
-//        // 所以在这里加了线程的判断 如果是非主线程 就取消单独的适配
-//        if (Looper.myLooper() == Looper.getMainLooper()) {
-//            AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
-//        }
-//        return super.getResources()
-//    }
+    override fun getResources(): Resources {
+        // 主要是为了解决 AndroidAutoSize 在横屏切换时导致适配失效的问题
+        // 但是 AutoSizeCompat.autoConvertDensity() 对线程做了判断 导致Coil等图片加载框架在子线程访问的时候会异常
+        // 所以在这里加了线程的判断 如果是非主线程 就取消单独的适配
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
+        }
+        return super.getResources()
+    }
+
+
 
 }

@@ -109,8 +109,9 @@ abstract class BaseViewModel<IS : IState, IE : IEvent> : ViewModel() {
      * 处理各种UI状态
      */
     fun sendSateIntent(block: IS.() -> IS) {
-        Log.i(TAG, "sendSateIntent!!")
+
         viewModelScope.launch {
+            Log.i(TAG, "sendSateIntent!!")
             iStateFlow.update { block(iStateFlow.value) }
         }
 //        iStateFlow.update { block(iStateFlow.value) }

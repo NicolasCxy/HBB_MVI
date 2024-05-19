@@ -66,11 +66,10 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation ("io.github.lucksiege:pictureselector:v3.11.2")    //图片选择器
     implementation("org.greenrobot:eventbus:3.3.1")
-
     implementation ("org.javassist:javassist:3.30.0-GA")
-
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation ("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
 
 }
 

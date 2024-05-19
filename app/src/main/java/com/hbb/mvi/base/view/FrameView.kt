@@ -22,7 +22,7 @@ interface FrameView<VB : ViewBinding> {
     fun VB.initView()
 
     /**
-     * 用于在页面创建时进行请求接口
+     * 初始化 数据，网络数据请求
      */
-    fun initRequestData()
+    fun initData()
 }
