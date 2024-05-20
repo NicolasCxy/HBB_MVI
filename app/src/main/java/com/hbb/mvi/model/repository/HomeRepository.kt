@@ -4,6 +4,7 @@ import com.hbb.mvi.base.BaseData
 import com.hbb.mvi.base.BaseRepository
 import com.hbb.mvi.base.RequestState
 import com.hbb.mvi.model.bean.User
+import javax.inject.Inject
 
 class HomeRepository : BaseRepository() {
     var age = 20

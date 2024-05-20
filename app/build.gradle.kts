@@ -17,6 +17,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            //abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+        }
     }
 
     buildTypes {
@@ -69,7 +75,10 @@ dependencies {
     implementation ("org.javassist:javassist:3.30.0-GA")
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
-    implementation ("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
+
+    //常用工具
+    implementation("com.tencent:mmkv:1.3.5")
+    implementation("com.tencent.bugly:crashreport:latest.release")
 
 }
 

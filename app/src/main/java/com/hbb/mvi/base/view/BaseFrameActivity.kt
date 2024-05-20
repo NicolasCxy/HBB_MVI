@@ -1,18 +1,15 @@
-package com.hbb.mvi.base
+package com.hbb.mvi.base.view
 
-import android.content.res.Resources
 import android.os.Bundle
-import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import com.hbb.mvi.base.view.FrameView
 import com.hbb.mvi.utils.EventBusUtils
 import com.hbb.mvi.utils.RegisterEventBus
 import com.hbb.mvi.utils.network.AutoRegisterNetListener
 import com.hbb.mvi.utils.network.NetworkStateChangeListener
 import com.hbb.mvi.utils.network.NetworkTypeEnum
-import me.jessyan.autosize.AutoSizeCompat
 
 abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity(),FrameView<VB>,
     NetworkStateChangeListener {
@@ -62,7 +59,7 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
      * @return Unit
      */
     override fun networkConnectChange(isConnected: Boolean) {
-
+        Log.i(this.javaClass.simpleName, "networkConnectChange: $isConnected")
     }
 
     /**
@@ -81,15 +78,15 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
         super.onDestroy()
     }
 
-    override fun getResources(): Resources {
-        // 主要是为了解决 AndroidAutoSize 在横屏切换时导致适配失效的问题
-        // 但是 AutoSizeCompat.autoConvertDensity() 对线程做了判断 导致Coil等图片加载框架在子线程访问的时候会异常
-        // 所以在这里加了线程的判断 如果是非主线程 就取消单独的适配
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
-        }
-        return super.getResources()
-    }
+//    override fun getResources(): Resources {
+//        // 主要是为了解决 AndroidAutoSize 在横屏切换时导致适配失效的问题
+//        // 但是 AutoSizeCompat.autoConvertDensity() 对线程做了判断 导致Coil等图片加载框架在子线程访问的时候会异常
+//        // 所以在这里加了线程的判断 如果是非主线程 就取消单独的适配
+//        if (Looper.myLooper() == Looper.getMainLooper()) {
+//            AutoSizeCompat.autoConvertDensityOfGlobal((super.getResources()))
+//        }
+//        return super.getResources()
+//    }
 
 
 

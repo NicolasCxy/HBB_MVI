@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVI_HBB</string>
+
+    <string name="BUGLY_APP_ID">b6dc526056</string>
 </resources>

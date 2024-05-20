@@ -1,4 +1,4 @@
-package com.hbb.mvi
+package com.hbb.mvi.ui.activity
 
 import android.util.Log
 import android.view.View
@@ -8,28 +8,16 @@ import androidx.lifecycle.lifecycleScope
 import com.hbb.mvi.base.BaseActivity
 import com.hbb.mvi.base.LoadInter
 import com.hbb.mvi.databinding.ActivityMainBinding
-import com.hbb.mvi.model.bean.injectTes.Truck
 import com.hbb.mvi.model.intent.HomeIEvent
 import com.hbb.mvi.model.intent.UserListState
 import com.hbb.mvi.model.mv.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
-    @Inject
-    lateinit var truck: Truck
-
     private val TAG = "MainActivity"
-
-//    private val mViewModel by lazy { ViewModelProvider(this)[HomeViewModel::class.java] }
-//
-//    override fun initData(savedInstanceState: Bundle?) {
-//        observerFlowIntent()
-//    }
-
 
     override val mViewModel by viewModels<HomeViewModel>()
 
@@ -37,7 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
 
     override fun ActivityMainBinding.initView() {
-
+        tvTitle.text = "框架测试测试!!"
     }
 
     override fun initData() {

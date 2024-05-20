@@ -1,12 +1,12 @@
-package com.hbb.mvi
+package com.hbb.mvi.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.hbb.mvi.R
 import com.hbb.mvi.model.bean.injectTes.Truck
 import com.luck.picture.lib.style.BottomNavBarStyle
 import com.luck.picture.lib.style.PictureSelectorStyle
@@ -53,7 +53,7 @@ class SplashActivity : AppCompatActivity() {
     fun selectImg(view: View) {
         Toast.makeText(this, "开始选择!", Toast.LENGTH_SHORT).show()
         truck.deliver()
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
 //        PictureSelector.create(this)
 //            .openGallery(SelectMimeType.ofImage())
 //            .setMaxSelectNum(1)
