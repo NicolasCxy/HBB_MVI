@@ -6,18 +6,14 @@ import com.hbb.mvi.base.BaseViewModel
 import com.hbb.mvi.base.IEvent
 import com.hbb.mvi.base.LoadInter
 import com.hbb.mvi.base.RequestState
-import com.hbb.mvi.model.bean.injectTes.Truck
 import com.hbb.mvi.model.intent.HomeIEvent
 import com.hbb.mvi.model.intent.HomeISate
 import com.hbb.mvi.model.intent.UserInfoState
 import com.hbb.mvi.model.intent.UserListState
 import com.hbb.mvi.model.repository.HomeRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Error
-import javax.inject.Inject
 
 class HomeViewModel(val repository: HomeRepository = HomeRepository()) :
     BaseViewModel<HomeISate, HomeIEvent>() {
@@ -41,8 +37,6 @@ class HomeViewModel(val repository: HomeRepository = HomeRepository()) :
             is HomeIEvent.GetUserInfo -> {
             }
         }
-
-
     }
 
     fun <T : Any> requestDataWithFlow1(
@@ -56,7 +50,7 @@ class HomeViewModel(val repository: HomeRepository = HomeRepository()) :
                 sendLoaderIntent(LoadInter.Loading(true))
             }
 
-            try{
+            try {
                 val response = withContext(Dispatchers.IO) {
                     request()
                 }
@@ -73,10 +67,10 @@ class HomeViewModel(val repository: HomeRepository = HomeRepository()) :
                         onError(response.msg)
                     }
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 onError(e.toString())
-            }finally {
+            } finally {
                 sendLoaderIntent(LoadInter.Loading(false))
                 sendLoaderIntent(LoadInter.ShowView)
             }

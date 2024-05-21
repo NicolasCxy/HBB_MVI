@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.hbb.mvi.base.BaseApplication
-import dagger.hilt.android.scopes.ActivityScoped
 import java.lang.reflect.Field
 
 /**

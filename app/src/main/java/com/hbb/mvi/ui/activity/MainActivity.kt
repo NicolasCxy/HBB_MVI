@@ -11,10 +11,8 @@ import com.hbb.mvi.databinding.ActivityMainBinding
 import com.hbb.mvi.model.intent.HomeIEvent
 import com.hbb.mvi.model.intent.UserListState
 import com.hbb.mvi.model.mv.HomeViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
     private val TAG = "MainActivity"

@@ -2,4 +2,7 @@
     <string name="app_name">MVI_HBB</string>
 
     <string name="BUGLY_APP_ID">b6dc526056</string>
+
+    <string name="base_network_disconnected">网路已断开</string>
+    <string name="base_network_connected">网络已连接</string>
 </resources>

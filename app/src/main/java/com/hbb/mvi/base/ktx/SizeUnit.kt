@@ -2,6 +2,7 @@ package com.hbb.mvi.base.ktx
 
 import android.content.Context
 import androidx.fragment.app.Fragment
+import com.hbb.mvi.base.BaseApplication
 
 /**
  * @Author: QuYunShuo
@@ -71,5 +72,38 @@ fun Fragment.sp2px(spValue: Float): Int {
  */
 fun Fragment.px2sp(pxValue: Float): Int {
     val scale = resources.displayMetrics.scaledDensity
+    return (pxValue / scale + 0.5f).toInt()
+}
+
+
+/**
+ * dp 转 px
+ */
+fun dp2px(dpValue: Float): Int {
+    val scale = BaseApplication.context.resources.displayMetrics.density
+    return (dpValue * scale + 0.5f).toInt()
+}
+
+/**
+ * px 转 dp
+ */
+fun px2dp(pxValue: Float): Int {
+    val scale = BaseApplication.context.resources.displayMetrics.density
+    return (pxValue / scale + 0.5f).toInt()
+}
+
+/**
+ * sp 转 px
+ */
+fun sp2px(spValue: Float): Int {
+    val scale = BaseApplication.context.resources.displayMetrics.scaledDensity
+    return (spValue * scale + 0.5f).toInt()
+}
+
+/**
+ * px 转 sp
+ */
+fun px2sp(pxValue: Float): Int {
+    val scale = BaseApplication.context.resources.displayMetrics.scaledDensity
     return (pxValue / scale + 0.5f).toInt()
 }

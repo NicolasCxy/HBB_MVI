@@ -1,7 +1,12 @@
 package com.hbb.mvi.base
 
+import rxhttp.wrapper.annotation.DefaultDomain
+
 open class BaseRepository {
-   suspend fun<T> post(request:()->BaseData<T>):BaseData<T>{
+
+
+
+   suspend fun<T> post( request:suspend ()->BaseData<T>):BaseData<T>{
         val response = request.invoke()
         when(response.code){
             -1 ->{ //失败

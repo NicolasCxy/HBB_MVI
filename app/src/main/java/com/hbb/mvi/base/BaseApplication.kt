@@ -9,7 +9,6 @@ import com.hbb.mvi.utils.SpUtils
 import com.hbb.mvi.utils.network.NetworkStateClient
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
-import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -19,7 +18,6 @@ import kotlin.system.measureTimeMillis
 import com.hbb.mvi.R
 import com.tencent.mmkv.BuildConfig
 
-@HiltAndroidApp
 class BaseApplication : Application() {
 
     private val mCoroutineScope by lazy(mode = LazyThreadSafetyMode.NONE) { MainScope() }
@@ -38,7 +36,6 @@ class BaseApplication : Application() {
         super.attachBaseContext(base)
         context = base
         application = this
-
     }
 
     private fun initCommonLibrary() {

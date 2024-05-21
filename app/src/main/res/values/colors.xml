@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="rad">#FFFF0000</color>
     <color name="ps_color_black1">#071431</color>
+    <color name="loading">#cdcdcd</color>
 </resources>

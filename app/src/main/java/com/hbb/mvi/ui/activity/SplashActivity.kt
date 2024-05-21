@@ -7,19 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.hbb.mvi.R
-import com.hbb.mvi.model.bean.injectTes.Truck
 import com.luck.picture.lib.style.BottomNavBarStyle
 import com.luck.picture.lib.style.PictureSelectorStyle
 import com.luck.picture.lib.style.TitleBarStyle
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-
-@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var truck: Truck
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +45,6 @@ class SplashActivity : AppCompatActivity() {
 
     fun selectImg(view: View) {
         Toast.makeText(this, "开始选择!", Toast.LENGTH_SHORT).show()
-        truck.deliver()
         startActivity(Intent(this, MainActivity::class.java))
 //        PictureSelector.create(this)
 //            .openGallery(SelectMimeType.ofImage())

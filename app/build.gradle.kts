@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("com.google.dagger.hilt.android")
+
+    id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -25,15 +26,25 @@ android {
         }
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("Boolean", "DEBUG", "false")
+        }
+        getByName("debug") {
+            isDebuggable = true
+            buildConfigField("Boolean", "DEBUG", "true")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -47,6 +58,8 @@ android {
     }
 
 }
+
+val rxhttpVersion = "3.2.6"
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
@@ -62,27 +75,32 @@ dependencies {
     implementation ("io.insert-koin:koin-android:3.3.1")
 
     // 网络
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.github.liujingxing.rxhttp:rxhttp:$rxhttpVersion")
+    ksp("com.github.liujingxing.rxhttp:rxhttp-compiler:$rxhttpVersion") // 用 KSP 代替 annotationProcessor
 
     //第三方
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("jp.wasabeef:glide-transformations:4.3.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation ("io.github.lucksiege:pictureselector:v3.11.2")    //图片选择器
-    implementation("org.greenrobot:eventbus:3.3.1")
+    implementation ("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
     implementation ("org.javassist:javassist:3.30.0-GA")
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+
 
     //常用工具
     implementation("com.tencent:mmkv:1.3.5")
     implementation("com.tencent.bugly:crashreport:latest.release")
+    implementation("org.greenrobot:eventbus:3.3.1")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.6")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation("com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.2") //管理RxJava3生命周期，页面销毁，关闭请求
+
 
 }
 
 // Allow references to generated code
-kapt {
-    correctErrorTypes = true
-}
+//kapt {
+//    correctErrorTypes = true
+//}
