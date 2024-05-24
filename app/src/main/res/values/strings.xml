@@ -5,4 +5,9 @@
 
     <string name="base_network_disconnected">网路已断开</string>
     <string name="base_network_connected">网络已连接</string>
+
+
+    <string name="slogan_two">Daily appetizersfor your eyes. Bon eyepétit.</string>
+    <string name="slogan_description_two">每日精选视频推介，让你大开眼界。</string>
+
 </resources>

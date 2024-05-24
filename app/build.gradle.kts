@@ -96,6 +96,7 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxjava:3.1.6")
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.2") //管理RxJava3生命周期，页面销毁，关闭请求
+    implementation("com.github.getActivity:XXPermissions:18.63")
 
 
 }

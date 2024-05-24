@@ -1,29 +1,32 @@
 package com.hbb.mvi.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.hbb.mvi.base.BaseActivity
-import com.hbb.mvi.base.LoadInter
+import com.hbb.mvi.logic.common.LoadInter
 import com.hbb.mvi.databinding.ActivityMainBinding
-import com.hbb.mvi.model.intent.HomeIEvent
-import com.hbb.mvi.model.intent.UserListState
-import com.hbb.mvi.model.mv.HomeViewModel
+import com.hbb.mvi.logic.intent.HomeIEvent
+import com.hbb.mvi.logic.intent.UserListState
+import com.hbb.mvi.logic.model.HomeViewModel
+import com.hbb.mvi.ui.common.BaseActivity
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
 
     private val TAG = "MainActivity"
 
-    override val mViewModel by viewModels<HomeViewModel>()
+    override val mViewModel: HomeViewModel by viewModel()
 
     override fun createVB() = ActivityMainBinding.inflate(layoutInflater)
 
 
     override fun ActivityMainBinding.initView() {
-        tvTitle.text = "框架测试测试!!"
+        tvTitle.text = "框架测试测试"
     }
 
     override fun initData() {
@@ -75,7 +78,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, HomeViewModel>() {
         Toast.makeText(this, "开始请求!!", Toast.LENGTH_SHORT).show()
         //发起用户列表请求
         mViewModel.sendEventIntent(HomeIEvent.GetUserList)
-//        truck.deliver()
+    }
+
+    companion object {
+        //统一启动入口
+        fun start(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
     }
 
 

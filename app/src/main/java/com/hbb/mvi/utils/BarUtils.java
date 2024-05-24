@@ -26,7 +26,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 
 
-import com.hbb.mvi.base.BaseApplication;
+import com.hbb.mvi.common.BaseApplication;
 
 import java.lang.reflect.Method;
 

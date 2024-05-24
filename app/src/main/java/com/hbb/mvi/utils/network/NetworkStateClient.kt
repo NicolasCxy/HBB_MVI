@@ -2,10 +2,9 @@ package com.hbb.mvi.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.annotation.RequiresPermission
-import com.hbb.mvi.base.BaseApplication
+import com.hbb.mvi.common.BaseApplication
 
 /**
  * 网络状态监听

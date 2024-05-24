@@ -5,4 +5,5 @@
     <color name="rad">#FFFF0000</color>
     <color name="ps_color_black1">#071431</color>
     <color name="loading">#cdcdcd</color>
+    <color name="whiteAlpha20">#ccffffff</color>
 </resources>

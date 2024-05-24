@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.hbb.mvi.base.BaseApplication
+import com.hbb.mvi.common.BaseApplication
 import java.lang.reflect.Field
 
 /**
