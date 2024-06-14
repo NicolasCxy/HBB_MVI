@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView style="@style/whiteCard"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+
+        <ImageView
+            android:id="@+id/issue_user_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/avatar"/>
+
+        <TextView
+            android:id="@+id/issue_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/issue_user_img"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/issue_user_img"
+            android:singleLine="true"
+            android:text="胖头鱼"
+            android:textColor="@color/blackAlpha55"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/issue_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:singleLine="true"
+            android:text="2022-06-08"
+            android:textColor="@color/subTextColor"
+            android:textSize="@dimen/smallTextSize" />
+
+        <TextView
+            android:id="@+id/issue_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/issue_user_img"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/issue_user_img"
+            android:textColor="@color/blackAlpha55"
+            android:textSize="@dimen/smallTextSize"
+            android:text="中专女生爆冷拿下数学竞赛全球12名"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

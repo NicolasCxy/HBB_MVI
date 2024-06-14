@@ -23,7 +23,9 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
 
     protected abstract val mViewModel: VM
 
-    protected val mBinding: VB by lazy(mode = LazyThreadSafetyMode.NONE) { createVB() }
+    val binding: VB get() = mBinding
+
+    private val mBinding: VB by lazy(mode = LazyThreadSafetyMode.NONE) { createVB() }
 
     protected lateinit var baseBinding: ActivityBaseBinding
 

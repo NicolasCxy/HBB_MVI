@@ -56,6 +56,9 @@ android {
     dataBinding {
         enable = true
     }
+    viewBinding {
+        enable = true
+    }
 
 }
 
@@ -87,7 +90,9 @@ dependencies {
     implementation ("io.github.lucksiege:pictureselector:v3.11.2")    //图片选择器
     implementation ("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
     implementation ("org.javassist:javassist:3.30.0-GA")
-
+    implementation ("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
+    implementation ("com.github.zhpanvip:bannerviewpager:3.5.12")
+    implementation ("com.makeramen:roundedimageview:2.3.0")
 
     //常用工具
     implementation("com.tencent:mmkv:1.3.5")
@@ -97,6 +102,8 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("com.github.liujingxing.rxlife:rxlife-rxjava3:2.2.2") //管理RxJava3生命周期，页面销毁，关闭请求
     implementation("com.github.getActivity:XXPermissions:18.63")
+    implementation("io.github.happylishang:collie:1.1.8")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 
 }

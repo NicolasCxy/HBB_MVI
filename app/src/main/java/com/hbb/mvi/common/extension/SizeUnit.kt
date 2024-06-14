@@ -1,4 +1,4 @@
-package com.hbb.mvi.extension
+package com.hbb.mvi.common.extension
 
 import android.content.Context
 import androidx.fragment.app.Fragment

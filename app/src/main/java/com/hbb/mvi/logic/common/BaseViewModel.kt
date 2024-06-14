@@ -107,7 +107,8 @@ abstract class BaseViewModel<IS : IState, IE : IEvent> : ViewModel() {
     fun sendSateIntent(block: IS.() -> IS) {
 
         viewModelScope.launch {
-            Log.i(TAG, "sendSateIntent!!")
+            Log.i(TAG, "sendSateIntent!")
+//            iStateFlow.value = block(iStateFlow.value)
             iStateFlow.update { block(iStateFlow.value) }
         }
 //        iStateFlow.update { block(iStateFlow.value) }

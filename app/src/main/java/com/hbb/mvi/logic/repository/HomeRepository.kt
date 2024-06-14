@@ -3,43 +3,42 @@ package com.hbb.mvi.logic.repository
 import com.hbb.mvi.logic.common.BaseData
 import com.hbb.mvi.logic.common.BaseRepository
 import com.hbb.mvi.logic.common.RequestState
-import com.hbb.mvi.extension.logD
+import com.hbb.mvi.common.extension.logD
+import com.hbb.mvi.logic.bean.HomeNewsInfo
 import com.hbb.mvi.logic.bean.User
+import kotlinx.coroutines.delay
 import rxhttp.awaitResult
 import rxhttp.toAwait
+import rxhttp.wrapper.cache.CacheMode
 import rxhttp.wrapper.param.RxHttp
 
 class HomeRepository : BaseRepository() {
     private val TAG = "HomeRepository"
 
-    var age = 20
-
-    suspend fun requestUserInfoPost(): BaseData<List<User>> {
+    suspend fun requestUserInfoPost(page: Int): BaseData<HomeNewsInfo.DataBean> {
         return post {
-            val baseData = BaseData<List<User>>()
-            //回调式写法
-            RxHttp.get("/article/list/0/json")
-                .toAwait<String>()
-                .awaitResult {
-                    //成功回调
-                    baseData.code = 200
-                    baseData.msg = it
-                    baseData.requestState = RequestState.SUCCESS
-                }.onFailure {
-                    //异常回调
-                    baseData.code = -1
-                    baseData.msg = "request Lose"
-                    baseData.requestState = RequestState.ERROR
-                }
-
-            logD(TAG, "requestUserInfoPostResult!!: ${baseData.msg}")
-
-            baseData.apply {
-                data = listOf(User("cxy", age), User("sanMao", 18), User("laoSi", 17))
-                age++
+            val baseData = BaseData<HomeNewsInfo.DataBean>().apply {
+                //回调式写法
+                RxHttp.get("/article/list/$page/json")
+                    .toAwait<HomeNewsInfo>()
+                    .awaitResult {
+                        //成功回调
+                        code = it.errorCode
+                        msg = it.errorMsg
+                        data = it.data
+                        requestState = RequestState.SUCCESS
+                    }.onFailure {
+                        //异常回调
+                        code = -1
+                        msg = "requestUserInfoPostLost,msg: ${it.message}"
+                        requestState = RequestState.ERROR
+                    }
+                logD(TAG, "requestUserInfoPostResult: ${msg}, page: $page")
             }
+            baseData
         }
     }
+
     /**
      * mainActivity
      *  - BaseViewModel 声明状态flow和操作flow,封装函数

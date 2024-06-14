@@ -16,7 +16,7 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel>:  BaseFrameActivit
      */
     override fun setStatusBar() {
         BarUtils.transparentStatusBar(this)
-        BarUtils.setStatusBarLightMode(this, true)
+//        BarUtils.setStatusBarLightMode(this, true)
     }
 
     override fun onResume() {

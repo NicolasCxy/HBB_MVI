@@ -7,25 +7,27 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.activity.MainActivity">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!@"
-            android:layout_centerInParent="true"/>
-
-
-        <Button
+        <FrameLayout
+            android:id="@+id/mainActivityFragContainer"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:text="开始请求"
-            android:onClick="getUserList"
-            />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
 
-    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grayDark" />
+
+        <include
+            android:id="@+id/navigationBar"
+            layout="@layout/layout_bottom_navigation_bar"/>
+
+    </LinearLayout>
 </layout>

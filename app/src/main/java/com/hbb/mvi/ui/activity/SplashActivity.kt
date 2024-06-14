@@ -56,8 +56,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding,EmptyViewModel>() {
     }
 
     private fun setUpView() {
-        mBinding.ivSlogan.startAnimation(alphaAnimation)
-        mBinding.ivSplashPicture.startAnimation(scaleAnimation)
+        binding.ivSlogan.startAnimation(alphaAnimation)
+        binding.ivSplashPicture.startAnimation(scaleAnimation)
         lifecycleScope.launch {
             delay(splashDuration)
             MainActivity.start(this@SplashActivity)

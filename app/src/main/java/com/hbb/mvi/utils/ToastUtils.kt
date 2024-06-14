@@ -6,7 +6,7 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.annotation.StringRes
 import com.hbb.mvi.common.BaseApplication
-import com.hbb.mvi.extension.getString
+import com.hbb.mvi.common.extension.getString
 
 private val mToastHandler by lazy { Handler(Looper.getMainLooper()) }
 

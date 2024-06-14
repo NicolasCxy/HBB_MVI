@@ -1,4 +1,4 @@
-package com.hbb.mvi.extension
+package com.hbb.mvi.common.extension
 
 import android.animation.Animator
 import android.animation.IntEvaluator

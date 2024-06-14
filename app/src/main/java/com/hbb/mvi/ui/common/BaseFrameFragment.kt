@@ -1,14 +1,19 @@
 package com.hbb.mvi.ui.common
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.hbb.mvi.common.event.MessageEvent
+import com.hbb.mvi.common.event.RefreshEvent
 import com.hbb.mvi.utils.EventBusUtils
 import com.hbb.mvi.utils.RegisterEventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Fragment基类
@@ -58,6 +63,13 @@ abstract class BaseFrameFragment<VB : ViewBinding, VM : ViewModel> : Fragment(),
         super.onDestroyView()
         _binding = null
     }
+
+
+    @Subscribe(sticky = true)
+   open fun onMessage(event: MessageEvent) {
+
+    }
+
 
     override fun onDestroy() {
         // 根据子类是否有 RegisterEventBus 注解决定是否进行注册 EventBus

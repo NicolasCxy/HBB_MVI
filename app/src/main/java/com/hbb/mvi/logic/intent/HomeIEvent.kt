@@ -3,7 +3,7 @@ package com.hbb.mvi.logic.intent
 import com.hbb.mvi.logic.common.IEvent
 
 sealed class HomeIEvent : IEvent {
-    object GetUserList : HomeIEvent()
+    data class GetHomeNews(var page: Int) : HomeIEvent()
     data class GetUserInfo(var uid: Long) : HomeIEvent()
 }
 

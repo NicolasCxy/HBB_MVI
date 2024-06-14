@@ -1,4 +1,4 @@
-package com.hbb.mvi.extension
+package com.hbb.mvi.common.extension
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

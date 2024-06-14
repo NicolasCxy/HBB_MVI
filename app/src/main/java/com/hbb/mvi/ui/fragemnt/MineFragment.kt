@@ -1,0 +1,26 @@
+package com.hbb.mvi.ui.fragemnt
+
+import com.hbb.mvi.databinding.FragmentHomeContainerBinding
+import com.hbb.mvi.databinding.FragmentMineContainerBinding
+import com.hbb.mvi.logic.model.EmptyViewModel
+import com.hbb.mvi.ui.common.BaseFragment
+import com.hbb.mvi.ui.common.BaseFrameFragment
+
+class MineFragment : BaseFragment<FragmentMineContainerBinding, EmptyViewModel>() {
+
+    override val mViewModel: EmptyViewModel by lazy { EmptyViewModel() }
+
+    override fun createVB() = FragmentMineContainerBinding.inflate(layoutInflater)
+
+    override fun initData() {
+
+    }
+
+    override fun FragmentMineContainerBinding.initView() {
+
+    }
+
+    companion object {
+        fun newInstance() = MineFragment()
+    }
+}
