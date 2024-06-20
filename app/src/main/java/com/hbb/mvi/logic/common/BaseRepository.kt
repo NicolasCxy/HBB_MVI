@@ -2,7 +2,6 @@ package com.hbb.mvi.logic.common
 
 
 open class BaseRepository {
-
    suspend fun<T> post( request:suspend ()-> BaseData<T>): BaseData<T> {
         val response = request.invoke()
         when(response.code){

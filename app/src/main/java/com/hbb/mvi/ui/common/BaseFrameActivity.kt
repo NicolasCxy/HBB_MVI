@@ -105,5 +105,4 @@ abstract class BaseFrameActivity<VB : ViewBinding, VM : ViewModel> : AppCompatAc
         return super.getResources()
     }
 
-
 }

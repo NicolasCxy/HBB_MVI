@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 import kotlin.system.measureTimeMillis
 import com.hbb.mvi.R
 import com.hbb.mvi.common.config.KoinConfig
+import com.scwang.smart.refresh.header.MaterialHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.snail.collie.Collie
 import com.snail.collie.CollieListener
 import com.snail.collie.Config
@@ -74,6 +76,7 @@ class BaseApplication : Application() {
         list.add { initNetworkStateClient() }
         list.add { initTencentBugly() }
         list.add { initKoin() }
+        list.add { initRefreshLayout() }
         return list
     }
 
@@ -120,6 +123,14 @@ class BaseApplication : Application() {
             modules(KoinConfig.moduleList)
         }
         return "Koin -->> init complete"
+    }
+
+    private fun initRefreshLayout():String{
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
+            layout.setEnableHeaderTranslationContent(true)
+            MaterialHeader(context).setColorSchemeResources(R.color.blue, R.color.blue, R.color.blue)
+        }
+        return "RefreshLayout -->> init complete"
     }
 
 

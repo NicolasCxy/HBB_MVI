@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.hbb.mvi"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.hbb.mvi"
@@ -70,6 +70,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.activity:activity:1.8.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -93,6 +94,14 @@ dependencies {
     implementation ("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
     implementation ("com.github.zhpanvip:bannerviewpager:3.5.12")
     implementation ("com.makeramen:roundedimageview:2.3.0")
+    implementation ("io.github.h07000223:flycoTabLayout:3.0.0")
+    implementation ("com.github.Justson.AgentWeb:agentweb-core:v5.0.0-alpha.1-androidx")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")   //圆形ImageView
+    implementation ("com.scwang.smart:refresh-header-material:2.0.0") //下拉刷新库
+    implementation ("com.scwang.smart:refresh-layout-kernel:2.0.0")
+    implementation ("com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.6.0-release-jitpack") //视频播放库
+    implementation ("com.gyf.immersionbar:immersionbar:3.0.0")
+    implementation ("com.github.chrisbanes:PhotoView:2.3.0") //图片操作库
 
     //常用工具
     implementation("com.tencent:mmkv:1.3.5")
@@ -104,6 +113,7 @@ dependencies {
     implementation("com.github.getActivity:XXPermissions:18.63")
     implementation("io.github.happylishang:collie:1.1.8")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
 
 
 }

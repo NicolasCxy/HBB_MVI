@@ -1,5 +1,6 @@
 package com.hbb.mvi.logic.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,8 @@ class LoadMoreAdapter : TrailingLoadStateAdapter<LoadMoreAdapter.LoaderVH>() {
     }
 
     override fun onBindViewHolder(holder: LoaderVH, loadState: LoadState) {
+        Log.i("LoadMoreAdapter", "onBindViewHolder: $loadState")
+
         when (loadState) {
             is LoadState.NotLoading -> {
                 if (loadState.endOfPaginationReached) {

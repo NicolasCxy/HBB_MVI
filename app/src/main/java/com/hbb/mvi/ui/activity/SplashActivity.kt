@@ -4,6 +4,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import androidx.lifecycle.lifecycleScope
+import com.hbb.mvi.R
 import com.hbb.mvi.databinding.ActivitySplashBinding
 import com.hbb.mvi.logic.model.EmptyViewModel
 import com.hbb.mvi.ui.common.BaseActivity
@@ -52,7 +53,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding,EmptyViewModel>() {
     }
 
     override fun ActivitySplashBinding.initView() {
-
+        setStatusBarBackground(R.color.black)
     }
 
     private fun setUpView() {

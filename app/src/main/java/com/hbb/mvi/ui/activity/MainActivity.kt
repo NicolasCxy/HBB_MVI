@@ -25,6 +25,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, EmptyViewModel>() {
 
     override val mViewModel: EmptyViewModel by viewModel()
 
+    private var backPressTime = 0L
+
     override fun createVB() = ActivityMainBinding.inflate(layoutInflater)
 
     private var homePageFragment: HomePageFragment? = null
@@ -37,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, EmptyViewModel>() {
 
     private val fragmentManager: FragmentManager by lazy { supportFragmentManager }
 
-    private var backPressTime = 0L
+
 
     override fun ActivityMainBinding.initView() {
         setOnClickListener(
@@ -174,28 +176,25 @@ class MainActivity : BaseActivity<ActivityMainBinding, EmptyViewModel>() {
         }
     }
 
-    override fun onBackPressed() {
-        if(fragmentManager.backStackEntryCount> 0){
-            fragmentManager.popBackStack()
-        }else{
-            processBackPressed()
-        }
-    }
-
-    private fun processBackPressed() {
-        val now = System.currentTimeMillis()
-        if (now - backPressTime > 2000) {
-            toast(String.format(getString(R.string.press_again_to_exit), R.string.app_name))
-            backPressTime = now
-        } else {
-            super.onBackPressed()
-        }
-    }
 
     companion object {
         //统一启动入口
         fun start(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount> 0){
+            supportFragmentManager.popBackStack()
+        }else{
+            val now = System.currentTimeMillis()
+            if (now - backPressTime > 2000) {
+                toast(String.format(getString(R.string.press_again_to_exit), getString(R.string.app_name) ))
+                backPressTime = now
+            } else {
+                super.onBackPressed()
+            }
         }
     }
 

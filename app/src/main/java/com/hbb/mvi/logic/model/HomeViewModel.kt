@@ -19,7 +19,7 @@ class HomeViewModel(val repository: HomeRepository) :
                     repository.requestUserInfoPost(it.page)    //开启网络请求
                 }, onSuccess = {
                     sendSateIntent {
-                        copy(userListState = HomeNewsState.Success(it))
+                        copy(homeListState = HomeNewsState.Success(it))
                     }
                 }, onError = { errorMsg ->
                     sendLoaderIntent(LoadInter.Error(errorMsg))

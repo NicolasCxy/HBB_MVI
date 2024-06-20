@@ -16,4 +16,7 @@ public class Domains {
     @Domain(name = "BaseUrlBaidu") //非默认域名，并取别名为BaseUrlBaidu
     public static String baidu = "https://www.baidu.com/";
 
+    @Domain(name = "BaseUrlBaoBab") //非默认域名，并取别名为BaseUrlBaidu
+    public static String baoBabUrl = Const.ActionUrl.BAOBAB_URL;
+
 }

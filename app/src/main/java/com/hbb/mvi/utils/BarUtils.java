@@ -3,6 +3,7 @@ package com.hbb.mvi.utils;
 import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -375,6 +376,7 @@ public final class BarUtils {
     public static void transparentStatusBar(@NonNull final Activity activity) {
         transparentStatusBar(activity.getWindow());
     }
+
 
     public static void transparentStatusBar(@NonNull final Window window) {
 

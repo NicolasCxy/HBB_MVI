@@ -1,12 +1,13 @@
 package com.hbb.mvi.ui.fragemnt
 
-import com.hbb.mvi.databinding.FragmentHomeContainerBinding
 import com.hbb.mvi.databinding.FragmentMineContainerBinding
 import com.hbb.mvi.logic.model.EmptyViewModel
 import com.hbb.mvi.ui.common.BaseFragment
-import com.hbb.mvi.ui.common.BaseFrameFragment
+import com.hbb.mvi.ui.common.BaseViewPagerFragment
 
 class MineFragment : BaseFragment<FragmentMineContainerBinding, EmptyViewModel>() {
+
+    override val loadHeardLayout = true
 
     override val mViewModel: EmptyViewModel by lazy { EmptyViewModel() }
 

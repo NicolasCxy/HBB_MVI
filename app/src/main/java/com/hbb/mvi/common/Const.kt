@@ -87,6 +87,10 @@ interface Const {
 
             const val BASE_URL = "https://www.wanandroid.com/"
 
+            const val BAOBAB_URL = "http://baobab.kaiyanapp.com/"
+
+            const val BAOBAB_LIST_URL = "http://baobab.kaiyanapp.com/api/v7/community/tab/rec"
+
             const val RANKLIST = "eyepetizer://ranklist/"
 
             const val WEBVIEW = "eyepetizer://webview/?title="

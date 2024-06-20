@@ -5,7 +5,7 @@ import com.hbb.mvi.logic.common.IState
 import com.hbb.mvi.logic.bean.User
 
 data class HomeISate(
-    val userListState: HomeNewsState,
+    val homeListState: HomeNewsState,
     val userInfoState: UserInfoState
 ) : IState
 

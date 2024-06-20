@@ -5,6 +5,7 @@ import android.animation.IntEvaluator
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import com.hbb.mvi.ui.widget.OnSingleClickListener
 
 /**
@@ -223,4 +224,31 @@ fun View.getViewId(): Int {
  */
 fun View.setOnSingleClickListener(delayTime: Int = 500, listener: (v: View) -> Unit) {
     setOnClickListener(OnSingleClickListener(delayTime, listener))
+}
+
+
+/**
+ * 占位隐藏view，带有渐隐动画效果。
+ *
+ * @param duration 毫秒，动画持续时长，默认500毫秒。
+ */
+fun View?.invisibleAlphaAnimation(duration: Long = 500L) {
+    this?.visibility = View.INVISIBLE
+    this?.startAnimation(AlphaAnimation(1f, 0f).apply {
+        this.duration = duration
+        fillAfter = true
+    })
+}
+
+/**
+ * 显示view，带有渐显动画效果。
+ *
+ * @param duration 毫秒，动画持续时长，默认500毫秒。
+ */
+fun View?.visibleAlphaAnimation(duration: Long = 500L) {
+    this?.visibility = View.VISIBLE
+    this?.startAnimation(AlphaAnimation(0f, 1f).apply {
+        this.duration = duration
+        fillAfter = true
+    })
 }

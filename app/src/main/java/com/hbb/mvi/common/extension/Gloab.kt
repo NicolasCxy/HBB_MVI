@@ -22,3 +22,9 @@ fun setSingleOnClickListener(vararg v: View?, block: View.() -> Unit) {
  * 获取资源中的字符串
  */
 fun getString(resId: Int): String = BaseApplication.context.resources.getString(resId)
+
+
+/**
+ * 获取资源中的dp值
+ */
+fun getDimension(resId: Int): Int = BaseApplication.context.resources.getDimensionPixelOffset(resId)

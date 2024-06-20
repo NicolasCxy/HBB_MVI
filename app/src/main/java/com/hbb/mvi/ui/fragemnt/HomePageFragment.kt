@@ -10,7 +10,7 @@ import com.chad.library.adapter4.loadState.LoadState
 import com.chad.library.adapter4.loadState.trailing.TrailingLoadStateAdapter
 import com.hbb.mvi.common.event.MessageEvent
 import com.hbb.mvi.common.event.RefreshEvent
-import com.hbb.mvi.databinding.FragmentHomeContainerBinding
+import com.hbb.mvi.databinding.FragmentRvContainerBinding
 import com.hbb.mvi.logic.adapter.HeaderAdapter
 import com.hbb.mvi.logic.adapter.HomeAdapter
 import com.hbb.mvi.logic.adapter.LoadMoreAdapter
@@ -18,6 +18,7 @@ import com.hbb.mvi.logic.common.LoadInter
 import com.hbb.mvi.logic.intent.HomeIEvent
 import com.hbb.mvi.logic.intent.HomeNewsState
 import com.hbb.mvi.logic.model.HomeViewModel
+import com.hbb.mvi.ui.activity.DetailsWebActivity
 import com.hbb.mvi.ui.common.BaseFragment
 import com.hbb.mvi.utils.RegisterEventBus
 import com.hbb.mvi.utils.toast
@@ -25,13 +26,16 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @RegisterEventBus
-class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewModel>() {
+class HomePageFragment : BaseFragment<FragmentRvContainerBinding, HomeViewModel>() {
     private val TAG = "HomePageFragment"
 
     override val mViewModel: HomeViewModel by viewModel()
-    override fun createVB() = FragmentHomeContainerBinding.inflate(layoutInflater)
+    override fun createVB() = FragmentRvContainerBinding.inflate(layoutInflater)
+
+    override val loadHeardLayout = true
 
     private lateinit var helper: QuickAdapterHelper
+
 
     lateinit var adapter: HomeAdapter
 
@@ -45,7 +49,7 @@ class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewMode
         requestHomeInfo(initPageNo)
     }
 
-    override fun FragmentHomeContainerBinding.initView() {
+    override fun FragmentRvContainerBinding.initView() {
         initRvAdapter(rvHome)
         initRefreshLayout()
     }
@@ -59,7 +63,9 @@ class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewMode
         initBannerHeard()
 
         adapter.setOnItemClickListener { adapter, view, position ->
-            toast("点击：$position")
+            val dataBean = adapter.items[position]
+            toast("点击：$position,Title: ${dataBean.title}" )
+            context?.let { DetailsWebActivity.start(it,dataBean.link) }
         }
 
         recyclerView.adapter = helper.adapter
@@ -95,7 +101,6 @@ class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewMode
     }
 
     private fun initRefreshLayout() {
-        mBinding.refreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189))
         mBinding.refreshLayout.setOnRefreshListener { requestHomeInfo(initPageNo) }
     }
 
@@ -104,11 +109,11 @@ class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewMode
         //监听业务事件
         lifecycleScope.launch {
             mViewModel.iStateFlow.collect { state ->
-                when (state.userListState) {
+                when (state.homeListState) {
                     is HomeNewsState.Instance -> {}
 
                     is HomeNewsState.Success -> {
-                        val newsData = state.userListState.homeNewsData
+                        val newsData = state.homeListState.homeNewsData
                         if (pageNo == initPageNo && newsData.datas.size == 0) {
 
                         } else if (pageNo == initPageNo) { //第一次加载成功
@@ -137,12 +142,13 @@ class HomePageFragment : BaseFragment<FragmentHomeContainerBinding, HomeViewMode
 
                     is LoadInter.Loading -> {
                         //是否显示弹框
-                        mBinding.refreshLayout.isRefreshing = loadInter.isShow
+//                        mBinding.refreshLayout.isRefreshing = loadInter.isShow
                     }
 
                     LoadInter.ShowView -> {
                         //表示当前处理完了
                         helper.trailingLoadState = LoadState.NotLoading(false)
+                        mBinding.refreshLayout.finishRefresh()
                     }
                 }
             }

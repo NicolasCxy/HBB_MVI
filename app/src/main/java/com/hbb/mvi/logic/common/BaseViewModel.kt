@@ -39,7 +39,6 @@ abstract class BaseViewModel<IS : IState, IE : IEvent> : ViewModel() {
                 handlerIEvent(event)
             }
         }
-
     }
 
     abstract fun handlerIEvent(it: IE)
