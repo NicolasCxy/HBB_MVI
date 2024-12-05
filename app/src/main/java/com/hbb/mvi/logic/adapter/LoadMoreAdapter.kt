@@ -48,7 +48,7 @@ class LoadMoreAdapter : TrailingLoadStateAdapter<LoadMoreAdapter.LoaderVH>() {
                 holder.viewBinding.loadMoreLoadEndView.visibility = View.GONE
             }
             is LoadState.Error -> {
-                holder.viewBinding.loadMoreLoadCompleteView.visibility = View.GONE
+                holder.viewBinding.loadMoreLoadCompleteView.visibility = View.GONE  
                 holder.viewBinding.loadMoreLoadingView.visibility = View.GONE
                 holder.viewBinding.loadMoreLoadFailView.visibility = View.VISIBLE
                 holder.viewBinding.loadMoreLoadEndView.visibility = View.GONE
